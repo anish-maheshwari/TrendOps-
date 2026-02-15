@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrendOps | Archestra-Ready AI Trend Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            bg: '#0f0f0f',
+                            surface: '#1e1e1e',
+                            border: '#333333'
+                        },
+                        brand: {
+                            red: '#FF0000',
+                            redHover: '#cc0000'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Force Dark Mode Background to prevent white flash/misalignment */
+        body {
+            background-color: #0f0f0f;
+            color: #d1d5db;
+        }
+
+        /* Glassmorphism */
+        .glass-panel {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            background: rgba(255, 255, 255, 0.05);
+            border-color: rgba(255, 0, 0, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px -10px rgba(255, 0, 0, 0.1);
+        }
+
+        /* Ambient Glow */
+        .ambient-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.12) 0%, rgba(0, 0, 0, 0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Pipeline Animation */
+        .pipeline-line {
+            background: linear-gradient(90deg, #333 0%, #FF0000 50%, #333 100%);
+            background-size: 200% 100%;
+            animation: pipelineFlow 2s linear infinite;
+        }
+
+        @keyframes pipelineFlow {
+            0% {
+                background-position: 100% 0;
+            }
+
+            100% {
+                background-position: -100% 0;
+            }
+        }
+
+        /* Responsive Fixes */
+        @media (max-width: 640px) {
+            .hero-title {
+                font-size: 2.5rem;
+                line-height: 1.2;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-[#0f0f0f] text-gray-300 font-sans selection:bg-brand-red selection:text-white overflow-x-hidden">
+
+    <!-- Navbar -->
+    <header class="fixed top-0 w-full z-50 bg-[#0f0f0f]/90 backdrop-blur-md border-b border-dark-border">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div
+                    class="w-10 h-10 rounded-lg bg-gradient-to-br from-brand-red to-red-900 flex items-center justify-center text-white font-bold shadow-[0_0_15px_rgba(255,0,0,0.5)]">
+                    T
+                </div>
+                <h1 class="text-xl font-bold tracking-tight text-white">TrendOps</h1>
+            </div>
+            <a href="/dashboard"
+                class="bg-white/10 hover:bg-white/20 text-white px-5 py-2.5 rounded-full text-sm font-medium transition-all border border-white/10 hover:border-white/30 backdrop-blur-sm">
+                Try Dashboard
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section
+        class="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-20 px-6 overflow-hidden bg-[#0f0f0f]">
+        <!-- Ambient Background -->
+        <div class="ambient-glow top-0 left-1/2 -translate-x-1/2 animate-pulse-slow opacity-60"></div>
+        <div class="ambient-glow bottom-0 right-0 opacity-30"></div>
+
+        <div class="text-center max-w-4xl relative z-10 animate-float">
+            <div
+                class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-red/10 border border-brand-red/20 text-brand-red text-xs font-semibold uppercase tracking-wider mb-10">
+                <span class="w-2 h-2 rounded-full bg-brand-red animate-pulse"></span>
+                Archestra Reference Architecture v1.0
+            </div>
+
+            <h1
+                class="hero-title text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight mb-8 leading-[1.1]">
+                Turn YouTube Trends Into <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-red-600">Strategic
+                    Intelligence.</span>
+            </h1>
+
+            <p class="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto leading-relaxed">
+                TrendOps is a native MCP agent swarm architected for the Archestra Control Plane, converting live
+                YouTube data into strategic intelligence in seconds.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                <a href="/dashboard"
+                    class="group relative px-10 py-5 bg-brand-red hover:bg-brand-redHover text-white text-lg font-bold rounded-full shadow-[0_0_40px_rgba(255,0,0,0.4)] hover:shadow-[0_0_60px_rgba(255,0,0,0.6)] transition-all transform hover:-translate-y-1">
+                    <span class="relative z-10 flex items-center gap-2">
+                        🚀 Launch Control Plane
+                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                    </span>
+                </a>
+
+                <a href="#how-it-works"
+                    class="px-8 py-5 text-gray-400 hover:text-white font-semibold transition-colors flex items-center gap-2 group border border-transparent hover:border-gray-800 rounded-full">
+                    📊 View Archestra Pipeline
+                </a>
+            </div>
+        </div>
+
+        <!-- Code Trace Decoy -->
+        <div
+            class="absolute bottom-10 left-10 hidden lg:block opacity-30 font-mono text-xs text-brand-red/80 space-y-2 pointer-events-none">
+            <div id="trace-logs">
+                <div class="typing-effect">> Archestra_MCP: Initializing swarm...</div>
+                <div class="typing-effect">> Governance_Agent: Policy enforced...</div>
+                <div class="typing-effect">> Data_Agent: Fetching API v3...</div>
+                <div class="typing-effect">> Intelligence_Agent: Strategy synthesis...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works (Pipeline) -->
+    <section id="how-it-works" class="py-24 bg-[#111111] relative border-t border-dark-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Autonomous Archestra Pipeline</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Our multi-agent MCP swarm executes a complex, governed
+                    workflow across Archestra's runtime.</p>
+            </div>
+
+            <div class="relative grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Connecting Line (Desktop) -->
+                <div class="absolute top-1/2 left-0 w-full h-0.5 bg-dark-border -translate-y-1/2 hidden md:block z-0">
+                </div>
+                <div
+                    class="absolute top-1/2 left-0 w-full h-0.5 pipeline-line -translate-y-1/2 hidden md:block z-0 opacity-50">
+                </div>
+
+                <!-- Step 1 -->
+                <div class="relative z-10 group">
+                    <div
+                        class="w-16 h-16 mx-auto bg-dark-bg border border-dark-border rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-xl group-hover:border-brand-red group-hover:shadow-[0_0_15px_rgba(255,0,0,0.3)] transition-all">
+                        🛡️
+                    </div>
+                    <div
+                        class="text-center bg-[#0f0f0f]/80 backdrop-blur p-4 rounded-xl border border-transparent group-hover:border-dark-border transition-all">
+                        <h3 class="text-white font-bold mb-2">Governance</h3>
+                        <p class="text-sm text-gray-500">MCP policy enforcement & security</p>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="relative z-10 group">
+                    <div
+                        class="w-16 h-16 mx-auto bg-dark-bg border border-dark-border rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-xl group-hover:border-brand-red group-hover:shadow-[0_0_15px_rgba(255,0,0,0.3)] transition-all">
+                        📡
+                    </div>
+                    <div
+                        class="text-center bg-[#0f0f0f]/80 backdrop-blur p-4 rounded-xl border border-transparent group-hover:border-dark-border transition-all">
+                        <h3 class="text-white font-bold mb-2">Ingest Data</h3>
+                        <p class="text-sm text-gray-500">Multi-source YouTube ingestion</p>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="relative z-10 group">
+                    <div
+                        class="w-16 h-16 mx-auto bg-dark-bg border border-dark-border rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-xl group-hover:border-brand-red group-hover:shadow-[0_0_15px_rgba(255,0,0,0.3)] transition-all">
+                        🧠
+                    </div>
+                    <div
+                        class="text-center bg-[#0f0f0f]/80 backdrop-blur p-4 rounded-xl border border-transparent group-hover:border-dark-border transition-all">
+                        <h3 class="text-white font-bold mb-2">Orchestration</h3>
+                        <p class="text-sm text-gray-500">Intelligent agent task allocation</p>
+                    </div>
+                </div>
+
+                <!-- Step 4 -->
+                <div class="relative z-10 group">
+                    <div
+                        class="w-16 h-16 mx-auto bg-dark-bg border border-dark-border rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-xl group-hover:border-brand-red group-hover:shadow-[0_0_15px_rgba(255,0,0,0.3)] transition-all">
+                        📈
+                    </div>
+                    <div
+                        class="text-center bg-[#0f0f0f]/80 backdrop-blur p-4 rounded-xl border border-transparent group-hover:border-dark-border transition-all">
+                        <h3 class="text-white font-bold mb-2">Intelligence</h3>
+                        <p class="text-sm text-gray-500">Executive strategy generation</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You Get -->
+    <section class="py-24 px-6 relative overflow-hidden bg-[#0f0f0f]">
+        <div class="ambient-glow top-0 left-1/2 -translate-x-1/2 opacity-20"></div>
+
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-16 text-center">Engineered for Archestra's Ecosystem
+            </h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-brand-red">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Modular MCP Tools</h3>
+                    <p class="text-gray-400">Every agent is exposed as an MCP tool for seamless Archestra orchestration.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-yellow-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Pillar-First Design</h3>
+                    <p class="text-gray-400">Built to align with Archestra's security, observability, and scalability
+                        pillars.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-purple-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Patterns & Trends</h3>
+                    <p class="text-gray-400">Identify emerging subcultures before they go mainframe.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-blue-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Strategic Implications</h3>
+                    <p class="text-gray-400">Actionable advice for brands, investors, and creators.</p>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-green-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
+                            </path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Content Strategy</h3>
+                    <p class="text-gray-400">Data-backed content formats to capture current attention.</p>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="glass-card p-8 rounded-2xl">
+                    <div class="w-12 h-12 bg-white/5 rounded-lg flex items-center justify-center mb-6 text-pink-500">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-3">Archestra Governance</h3>
+                    <p class="text-gray-400">Full visibility into cost, execution path, and API usage via MCP swarms.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section class="py-24 bg-[#0f0f0f] border-y border-dark-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-16 text-center">The Power of Swarms</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div
+                    class="p-6 border border-dark-border rounded-xl hover:border-brand-red/50 transition-colors bg-[#1a1a1a]">
+                    <div class="text-brand-red font-bold text-lg mb-2">Founders</div>
+                    <p class="text-gray-400 text-sm">Discover startup opportunities in underserved niches like regional
+                        Indian content.</p>
+                </div>
+                <div
+                    class="p-6 border border-dark-border rounded-xl hover:border-brand-red/50 transition-colors bg-[#1a1a1a]">
+                    <div class="text-brand-red font-bold text-lg mb-2">Brands</div>
+                    <p class="text-gray-400 text-sm">Optimize influencer spend by identifying rising stars before they
+                        peak.</p>
+                </div>
+                <div
+                    class="p-6 border border-dark-border rounded-xl hover:border-brand-red/50 transition-colors bg-[#1a1a1a]">
+                    <div class="text-brand-red font-bold text-lg mb-2">Media Houses</div>
+                    <p class="text-gray-400 text-sm">Identify breakout formats and regional trends to inform production
+                        slate.</p>
+                </div>
+                <div
+                    class="p-6 border border-dark-border rounded-xl hover:border-brand-red/50 transition-colors bg-[#1a1a1a]">
+                    <div class="text-brand-red font-bold text-lg mb-2">Architects</div>
+                    <p class="text-gray-400 text-sm">Observe a production-grade Archestra-ready swarm in action.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="py-32 px-6 relative overflow-hidden flex items-center justify-center bg-[#0f0f0f]">
+        <div class="ambient-glow opacity-30"></div>
+
+        <div class="relative z-10 text-center max-w-3xl">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-8">Ready to decode YouTube’s<br>attention economy?
+            </h2>
+            <a href="/dashboard"
+                class="group inline-flex items-center gap-3 px-10 py-5 bg-brand-red hover:bg-brand-redHover text-white text-xl font-bold rounded-full shadow-[0_0_40px_rgba(255,0,0,0.4)] hover:shadow-[0_0_60px_rgba(255,0,0,0.6)] transition-all transform hover:-translate-y-1">
+                🚀 Launch Archestra Dashboard
+                <svg class="w-6 h-6 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6">
+                    </path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-dark-border bg-[#0f0f0f] text-center text-gray-600 text-sm">
+        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <a href="https://www.linkedin.com/in/anish-maheshwarii" target="_blank"
+                    class="flex items-center text-gray-400 hover:text-gray-200 transition-colors">
+                    <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" class="w-5 h-5" />
+                    <span class="ml-2">anish-maheshwarii</span>
+                </a>
+            </div>
+            <div class="font-mono text-xs text-gray-500">v1.0.0-PROD | Archestra Reference</div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

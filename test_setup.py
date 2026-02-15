@@ -4,6 +4,10 @@ Run this after installing dependencies to ensure everything works.
 """
 import sys
 import os
+import warnings
+
+# Suppress the noisy google-generativeai FutureWarning
+warnings.filterwarnings("ignore", category=FutureWarning, module="google.generativeai")
 
 def test_imports():
     """Test that all required packages can be imported."""
@@ -35,13 +39,6 @@ def test_imports():
         print("[OK] Google Generative AI")
     except ImportError:
         print("[FAIL] Google Generative AI - run: pip install google-generativeai")
-        return False
-    
-    try:
-        from sklearn.cluster import KMeans
-        print("[OK] scikit-learn")
-    except ImportError:
-        print("[FAIL] scikit-learn - run: pip install scikit-learn")
         return False
     
     try:

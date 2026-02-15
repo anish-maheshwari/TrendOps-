@@ -3,7 +3,8 @@ uvicorn[standard]>=0.32.0
 pydantic>=2.10.0
 httpx>=0.28.0
 python-dotenv>=1.0.0
-scikit-learn>=1.5.0
+# Removed scikit-learn to stay under Vercel's 250MB limit
+# The project now uses a custom lightweight clustering implementation
 numpy>=2.0.0
 google-generativeai>=0.8.0
 jinja2>=3.1.0

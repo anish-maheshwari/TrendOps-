@@ -9,6 +9,7 @@
 ---
 
 ## 🎯 Executive Summary
+Live Project link :- trendops.co.in
 **TrendOps** is the first **Native MCP Agent Swarm** architected specifically for the **Archestra Control Plane**. Instead of a monolithic application, TrendOps decomposes the intelligence lifecycle into atomic, governed MCP Tools. It ingests live YouTube metadata, mathematically clusters subcultures, and generates investor-ready strategic insights.
 
 Built as a reference implementation for the **2 Fast 2 MCP** hackathon, it demonstrates:
